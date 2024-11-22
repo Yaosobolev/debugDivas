@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import fonts from '@/lib/fonts'
 import '@/styles/main.css'
 
+import { Header } from './header'
+
 export const metadata: Metadata = {
   title: 'Мероприятие',
   description: 'Платформа для отслеживания мероприятий',
@@ -14,10 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fonts.oswald.variable} ${fonts.raleway.variable}`}>
-        <header></header>
+      <body
+        className={`${fonts.oswald.variable} ${fonts.raleway.variable} flex flex-col overflow-x-hidden h-screen font-sans`}
+      >
+        <Header />
 
-        <main>{children}</main>
+        <main className="flex-1">{children}</main>
 
         <footer></footer>
       </body>
