@@ -1,16 +1,17 @@
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTrigger,
-  Button,
-} from '@/components/ui'
+'use client'
+
+import { Sheet, SheetClose, SheetContent, SheetFooter, SheetTrigger, Button } from '@/components/ui'
 import { FilterGroup } from './filter-group'
+import { useState } from 'react'
 
 export const Filters: React.FC = () => {
+  const [avalible, setAvalible] = useState<boolean>(true)
+  console.log('avalible: ', avalible)
+
+  const onAvalible = () => {
+    setAvalible(!avalible)
+  }
+
   return (
     <div className="">
       <Sheet>
@@ -18,10 +19,14 @@ export const Filters: React.FC = () => {
           <Button variant="default">Фильтры</Button>
         </SheetTrigger>
         <SheetContent side={'left'}>
-          <FilterGroup />
+          <FilterGroup onAvalible={setAvalible} />
           <SheetFooter>
             <SheetClose asChild>
-              <Button type="submit">Save changes</Button>
+              {avalible && (
+                <Button className="mr-auto mt-4" type="submit">
+                  Найти
+                </Button>
+              )}
             </SheetClose>
           </SheetFooter>
         </SheetContent>
