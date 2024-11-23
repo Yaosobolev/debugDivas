@@ -9,18 +9,18 @@ export const useQueryFilters = (filters: Filters) => {
   useEffect(() => {
     if (isMounted.current) {
       const params = {
-        sportType: Array.from(filters.sportType),
-        location: Array.from(filters.location),
+        sport_type: filters.sport_type,
+        location: filters.location,
         seats: filters.seats,
-        sex: Array.from(filters.sex),
-        minAge: filters.minAge,
-        maxAge: filters.maxAge,
-        startedAt: filters.startedAt,
-        endedAt: filters.endedAt,
+        gender: Array.from(filters.gender),
+        min_age: filters.min_age,
+        max_age: filters.max_age,
+        started_at: filters.started_at,
+        ended_at: filters.ended_at,
       }
 
       const query = qs.stringify(params, {
-        arrayFormat: 'comma',
+        arrayFormat: 'repeat',
       })
       router.push(`?${query}`, {
         scroll: false,

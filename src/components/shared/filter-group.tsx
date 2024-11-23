@@ -5,7 +5,6 @@ import { useQueryFilters } from '@/hooks/use-query-filters'
 import { CheckboxFiltersGroup } from './checkbox-filters-group'
 import { useFilters } from '@/hooks/use-filters'
 import { Input } from '../ui'
-import { useParams } from 'next/navigation'
 
 interface Props {
   className?: string
@@ -15,11 +14,10 @@ interface Props {
 export const FilterGroup: React.FC<Props> = ({ className, onAvalible }) => {
   const filters = useFilters()
   useQueryFilters(filters)
-  const params = useParams()
   return (
     <div className={cn('flex flex-col gap-3', className)}>
       {/* ,пробел */}
-      <CheckboxFiltersGroup
+      {/* <CheckboxFiltersGroup
         title="Вид спорта"
         name="pizzaTypes"
         className="mt-5"
@@ -68,7 +66,25 @@ export const FilterGroup: React.FC<Props> = ({ className, onAvalible }) => {
         ]}
         onClickCheckbox={filters.setLocation}
         selected={filters.location}
-      />
+      /> */}
+      {/* инпут вид спорта */}
+      <div className="mt-5">
+        <p className="font-bold mb-3">Вид спорта</p>
+        <Input
+          type="string"
+          onChange={(e) => filters.setSportType(e.target.value)}
+          value={filters.sport_type === '' ? '' : filters.sport_type}
+        />
+      </div>
+      {/* инпут место проведения */}
+      <div className="mt-5">
+        <p className="font-bold mb-3">Место проведения</p>
+        <Input
+          type="string"
+          onChange={(e) => filters.setLocation(e.target.value)}
+          value={filters.location === '' ? '' : filters.location}
+        />
+      </div>
 
       {/* инпут кол-во участников */}
       <div className="mt-5">
@@ -95,7 +111,7 @@ export const FilterGroup: React.FC<Props> = ({ className, onAvalible }) => {
           },
         ]}
         onClickCheckbox={filters.setSex}
-        selected={filters.sex}
+        selected={filters.gender}
       />
       {/* Инпут мин макс Возрастная группа*/}
       <div className="mt-5">
@@ -105,18 +121,18 @@ export const FilterGroup: React.FC<Props> = ({ className, onAvalible }) => {
             type="number"
             onChange={(e) => (filters.setMinAge(e.target.value), onAvalible(true))}
             placeholder="от"
-            value={filters.minAge === '' ? '' : filters.minAge || ''}
+            value={filters.min_age === '' ? '' : filters.min_age || ''}
           />
           <Input
             type="number"
             onChange={(e) => (filters.setMaxAge(e.target.value), onAvalible(true))}
             placeholder="до"
-            value={filters.minAge === '' ? '' : filters.maxAge || ''}
+            value={filters.max_age === '' ? '' : filters.max_age || ''}
           />
         </div>
-        {filters.minAge !== undefined &&
-          filters.maxAge !== undefined &&
-          filters.maxAge < filters.minAge && (
+        {filters.min_age !== undefined &&
+          filters.max_age !== undefined &&
+          filters.max_age < filters.min_age && (
             <>
               {onAvalible(false)}
               <p className="text-red-500">
@@ -134,18 +150,18 @@ export const FilterGroup: React.FC<Props> = ({ className, onAvalible }) => {
             type="date"
             onChange={(e) => (filters.setStartedAt(e.target.value), onAvalible(true))}
             placeholder="с"
-            value={filters.startedAt || ''}
+            value={filters.started_at || ''}
           />
           <Input
             type="date"
             onChange={(e) => (filters.setEndedAt(e.target.value), onAvalible(true))}
             placeholder="по"
-            value={filters.endedAt || ''}
+            value={filters.ended_at || ''}
           />
         </div>
-        {filters.endedAt !== undefined &&
-          filters.startedAt !== undefined &&
-          new Date(filters.endedAt).getTime() < new Date(filters.startedAt).getTime() && (
+        {filters.ended_at !== undefined &&
+          filters.started_at !== undefined &&
+          new Date(filters.ended_at).getTime() < new Date(filters.started_at).getTime() && (
             <>
               {onAvalible(false)}
               <p className="text-red-500">Дата окончания не может быть раньше даты начала</p>
