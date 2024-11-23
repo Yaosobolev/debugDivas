@@ -6,11 +6,6 @@ import { useState } from 'react'
 
 export const Filters: React.FC = () => {
   const [avalible, setAvalible] = useState<boolean>(true)
-  console.log('avalible: ', avalible)
-
-  const onAvalible = () => {
-    setAvalible(!avalible)
-  }
 
   return (
     <div className="">

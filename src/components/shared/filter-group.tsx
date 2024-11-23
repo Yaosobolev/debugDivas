@@ -16,7 +16,6 @@ export const FilterGroup: React.FC<Props> = ({ className, onAvalible }) => {
   const filters = useFilters()
   useQueryFilters(filters)
   const params = useParams()
-  console.log('params: ', params)
   return (
     <div className={cn('flex flex-col gap-3', className)}>
       {/* ,пробел */}
