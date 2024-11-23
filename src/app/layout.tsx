@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import fonts from '@/lib/fonts'
 import '@/styles/main.css'
 
-import { Header } from './header'
+import { Header } from '@/components/shared/header'
 
 export const metadata: Metadata = {
   title: 'Мероприятие',

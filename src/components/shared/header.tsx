@@ -1,11 +1,9 @@
 import Image from 'next/image'
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
@@ -13,9 +11,12 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Bell } from 'lucide-react'
 import Link from 'next/link'
-import { AuthDialog } from '@/components/shared'
+import { AuthDialog } from '@/components/shared/auth'
+interface Props {
+  className?: string
+}
 
-export function Header() {
+export const Header: React.FC<Props> = () => {
   return (
     <header>
       <div className="container mx-auto flex items-center gap-4 py-8">

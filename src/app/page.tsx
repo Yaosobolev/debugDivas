@@ -1,5 +1,10 @@
-import Image from 'next/image'
+import { TopBar } from '@/components/shared/top-bar'
 
 export default function Home() {
-  return <div></div>
+  return (
+    <>
+      {' '}
+      <TopBar />{' '}
+    </>
+  )
 }
