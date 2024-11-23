@@ -34,8 +34,8 @@ export function DrawerDialog({
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Авторизация</DialogTitle>
+            {children}
           </DialogHeader>
-          {children}
         </DialogContent>
       </Dialog>
     )
