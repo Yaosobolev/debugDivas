@@ -3,9 +3,12 @@
 import { Sheet, SheetClose, SheetContent, SheetFooter, SheetTrigger, Button } from '@/components/ui'
 import { FilterGroup } from './filter-group'
 import { useState } from 'react'
+import { useEvents } from '@/hooks/use-events'
 
 export const Filters: React.FC = () => {
   const [avalible, setAvalible] = useState<boolean>(true)
+  const { events, loading } = useEvents()
+  console.log('events: ', events)
 
   return (
     <div className="">
