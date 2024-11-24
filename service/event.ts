@@ -1,5 +1,7 @@
 import { axiosInstance } from './instance'
 
+import { Event } from '@/@types/event'
+
 export const getEvents = async (filter: string) => {
   console.log('filter: ', filter)
 

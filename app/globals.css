@@ -59,6 +59,14 @@
   }
 }
 
+.nextjs-toast {
+  display: none !important;
+}
+[data-nextjs-toast-wrapper="true"] {
+  display: none !important;
+}
+/* nextjs-toast-errors-parent nextjs-error-with-static */
+
 @layer base {
   * {
     @apply border-border;

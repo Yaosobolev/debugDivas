@@ -5,6 +5,7 @@ import { useQueryFilters } from '@/hooks/use-query-filters'
 import { CheckboxFiltersGroup } from './checkbox-filters-group'
 import { useFilters } from '@/hooks/use-filters'
 import { Input } from '../ui'
+import { useEffect } from 'react'
 
 interface Props {
   className?: string
@@ -14,6 +15,23 @@ interface Props {
 export const FilterGroup: React.FC<Props> = ({ className, onAvalible }) => {
   const filters = useFilters()
   useQueryFilters(filters)
+
+  useEffect(() => {
+    if (
+      filters.max_age !== undefined &&
+      filters.min_age !== undefined &&
+      filters.max_age < filters.min_age
+    ) {
+      onAvalible(false)
+    }
+    if (
+      filters.ended_at !== undefined &&
+      filters.started_at !== undefined &&
+      new Date(filters.ended_at).getTime() < new Date(filters.started_at).getTime()
+    ) {
+      onAvalible(false)
+    }
+  }, [filters])
   return (
     <div className={cn('flex flex-col gap-3', className)}>
       {/* ,пробел */}
@@ -134,7 +152,7 @@ export const FilterGroup: React.FC<Props> = ({ className, onAvalible }) => {
           filters.max_age !== undefined &&
           filters.max_age < filters.min_age && (
             <>
-              {onAvalible(false)}
+              {/* {onAvalible(false)} */}
               <p className="text-red-500">
                 Минимальный возвраст не может быть больше максимального
               </p>
@@ -163,7 +181,6 @@ export const FilterGroup: React.FC<Props> = ({ className, onAvalible }) => {
           filters.started_at !== undefined &&
           new Date(filters.ended_at).getTime() < new Date(filters.started_at).getTime() && (
             <>
-              {onAvalible(false)}
               <p className="text-red-500">Дата окончания не может быть раньше даты начала</p>
             </>
           )}
